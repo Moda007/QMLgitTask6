@@ -7,6 +7,23 @@ Item {
     width: 300
     height: 400
 
+    QtObject {
+        id: priv
+        property vatirnt passcode: [1,2,3,4]
+        property int inputIndex: -1 //no number was entered
+        property bool unlocked: false
+        property bool programming: false
+
+        function unlock(){
+            inlocked = true;
+        }
+    }
+
+    function startUnlocking(){
+        priv.inputIndex = 0
+        priv.unlocked = false
+    }
+
 
     Rectangle{
         anchors.fill: parent
