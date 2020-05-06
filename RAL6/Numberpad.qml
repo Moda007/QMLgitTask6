@@ -64,16 +64,17 @@ Item {
         NumberpadButton {
             id: btn0
             number: qsTr("0")
-            onClickSignal: enterPressed()
+            onClickSignal: buttonPressed(parseInt(number))
         }
         NumberpadButton {
             id: btnEnter
             number: qsTr("E")
-            onClickSignal: clearPressed()
+            onClickSignal: enterPressed()
         }
         NumberpadButton {
             id: btnClear
             number: qsTr("C")
+            onClickSignal: clearPressed()
         }
 
     }
