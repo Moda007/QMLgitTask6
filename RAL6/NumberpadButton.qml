@@ -7,6 +7,8 @@ Item {
 
     property string number
 
+    signal clickSignal(string number)
+
     Button {
         id: button
 
@@ -17,5 +19,7 @@ Item {
         font.pointSize: 40
         font.weight: Font.Bold
         font.family: "Arial"
+
+        onClicked: parent.clickSignal(number)
     }
 }
