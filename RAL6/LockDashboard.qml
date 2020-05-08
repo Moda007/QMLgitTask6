@@ -13,9 +13,23 @@ Item {
         property int inputIndex: -1 //no number was entered
         property bool unlocked: false
         property bool programming: false
+        property variant newPasscode: [1,2,3,4]
+
+        onUnlockedChanged: {
+            programming = false;
+        }
 
         function unlock(){
             unlocked = true;
+        }
+    }
+
+
+    function startProgramming(){
+        if (priv.unlocked){
+            console.log("Success")
+            priv.inputIndex = 0
+            priv.programming = true
         }
     }
 
@@ -34,20 +48,93 @@ Item {
             return false
         }
         else {
-            if (number !== priv.passcode[priv.inputIndex]) {
-                lock()
-                return false
-            }
-            else {
-                if(priv.inputIndex == 3) {
-                    priv.unlock()
+            if(priv.programming){
+                priv.newPasscode[priv.inputIndex] = number;
+
+                if(priv.inputIndex ==3) {
+                    for(var i=0; i<4; i++){
+                        priv.passcode[i]=priv.newPasscode[i];
+                    }
+                    //Printing My New PassCode
+                    console.log("My New PassCode is:")
+                    for(var k=0; k<4; k++){
+                        console.log(priv.passcode[k])
+                    }
+                    lock();
                 }
-                else {
+                else{
                     priv.inputIndex++
                 }
+
+            }else{
+                if (number !== priv.passcode[priv.inputIndex]) {
+                    lock()
+                    return false
+                }
+                else {
+                    if(priv.inputIndex ==3) {
+                        priv.unlock();
+                    }
+                    else{
+                        priv.inputIndex++
+                    }
+                }
+             }
+
             }
-        }
     }
+
+//            if(priv.programming) {
+//                priv.newPasscode[priv.inputIndex] = number;
+//            }
+//            else {
+
+//                if (number !== priv.passcode[priv.inputIndex]) {
+//                    lock()
+//                    return false
+//                }
+//                else {
+//                    if(priv.inputIndex ==3) {
+//                        priv.unlock();
+//                    }
+//                    else{
+//                        priv.inputIndex++
+//                    }
+//                }
+//             }
+
+
+//        }}
+
+//        if(priv.programming) {
+//            priv.newPasscode[priv.inputIndex] = number;
+//        }
+//        else {
+//            if (number !== priv.passcode[priv.inputIndex]) {
+//                lock()
+//                return false
+//            }
+//            //else {
+//                if(priv.inputIndex == 3) {
+//                    //priv.unlock()
+//                    if (priv.programming) {
+//                        console.log("In 2nd Programming")
+//                        for(var i=0; i<4; i++) {
+//                            priv.passcode[i] = priv.newPasscode[i];
+//                        }
+//                        lock();
+//                    }
+//                    else {
+//                        priv.unlock();
+//                    }
+//                }
+//                else {
+//                    priv.inputIndex++
+//                }
+//            }
+//        }
+//   // }
+////}
 
 
     Rectangle{

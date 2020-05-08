@@ -17,7 +17,7 @@ Window {
                 dashboard.startUnlocking();
             }
             onEnterPressed: {
-                console.log("enter")
+                dashboard.startProgramming();
             }
         }
 
