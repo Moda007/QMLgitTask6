@@ -11,10 +11,10 @@ Window {
         Numberpad {
             id: numberpad
             onButtonPressed: {
-                console.log(id)
+                dashboard.numberInput(id);
             }
             onClearPressed: {
-                console.log("clear")
+                dashboard.startUnlocking();
             }
             onEnterPressed: {
                 console.log("enter")
